@@ -337,7 +337,7 @@ main {
 
 /* Conteúdo/Caixa do Modal */
 .modal-conteudo {
-    background-color: #fefefe;
+    background-color: #b5763fcc;
     margin: 15% auto; /* 15% do topo e centralizado */
     padding: 20px;
     border: 1px solid #888;

@@ -120,23 +120,42 @@ const modalImagem = document.getElementById('modal-imagem');
 const modalTitulo = document.getElementById('modal-titulo');
 const modalCaminho = document.getElementById('modal-caminho');
 const modalInfoExtra = document.getElementById('modal-info-extra');
+const modalDetalhesContainer = document.getElementById('modal-detalhes-dinamicos'); 
 
 
 /**
- * Abre o modal e preenche com os detalhes do item clicado.
- * @param {object} item - O objeto de dados do item (nome, caminho).
+ * Abre o modal e preenche com os detalhes do item clicado (DINÂMICO).
+ * @param {object} item - O objeto de dados do item (nome, caminho, ano, genero, etc.).
  */
 function abrirModal(item) {
-    // 1. Preenche o conteúdo do modal
+    // 1. Preenche o cabeçalho estático (Título e Imagem)
     modalTitulo.textContent = item.nome;
-    modalCaminho.innerHTML = `**Caminho (URL):** <a href="${item.caminho}" target="_blank">${item.caminho}</a>`;
-    modalImagem.src = item.caminho;
-    modalImagem.alt = `Pré-visualização de ${item.nome}`;    
-    // Simula uma informação extra que poderia vir da API (opcional)
-    modalInfoExtra.textContent = "Clique fora ou no 'X' para fechar.";
-    // 2. Torna o modal visível
-    detalheModal.style.display = "block";    
-    // Adiciona o listener para fechar o modal ao clicar fora
+    modalImagem.src = item.caminho || item.urlCompleta; // Usa 'caminho' ou 'urlCompleta'
+    modalImagem.alt = `Pré-visualização de ${item.nome}`;
+    // 2. Limpa o container dinâmico
+    modalDetalhesContainer.innerHTML = ''; 
+    // 3. Itera sobre as chaves do objeto item e cria o HTML dinamicamente
+    for (const chave in item) {
+        // Ignora as chaves que já são tratadas estaticamente (como 'nome' e 'caminho')
+        if (chave === 'nome' || chave === 'caminho' || chave === 'urlCompleta') {
+            continue;
+        }
+        const valor = item[chave];
+        // Formata a chave para exibição (ex: "ano" -> "Ano", "genero" -> "Gênero")
+        const chaveFormatada = chave.charAt(0).toUpperCase() + chave.slice(1).replace(/([A-Z])/g, ' $1');
+        // Cria o parágrafo de detalhe
+        const pDetalhe = document.createElement('p');
+         // Verifica se o valor é uma URL e cria um link, caso contrário exibe o texto simples
+        if (chave === 'linkExterno' || chave === 'url') { 
+             pDetalhe.innerHTML = `${chaveFormatada}: <a href="${valor}" target="_blank">${valor}</a>`;
+        } else {
+            pDetalhe.innerHTML = `${chaveFormatada}: ${valor}`;
+        }
+         modalDetalhesContainer.appendChild(pDetalhe);
+    }
+     // 4. Torna o modal visível
+    detalheModal.style.display = "block";
+     // Adiciona o listener para fechar o modal ao clicar fora
     window.onclick = function(event) {
         if (event.target === detalheModal) {
             fecharModal();
