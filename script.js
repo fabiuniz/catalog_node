@@ -1,6 +1,21 @@
 let dados = [];
 const sectionContainer = document.querySelector('main section');
 const inputBusca = document.querySelector('input[type="text"]');
+// 1. Adicionar referência ao elemento onde o total será exibido
+const totalRegistrosElement = document.getElementById('total-registros'); 
+
+/**
+ * Função para atualizar o contador de itens no cabeçalho.
+ * @param {number} total - O número de itens a ser exibido.
+ * @param {boolean} isFiltered - Indica se o total se refere a um filtro ativo.
+ */
+function atualizarContador(total, isFiltered = false) {
+    if (isFiltered) {
+        totalRegistrosElement.textContent = `Itens encontrados: ${total}`;
+    } else {
+        totalRegistrosElement.textContent = `Total de registros: ${total}`;
+    }
+}
 
 /**
  * Função para buscar o arquivo JSON de catálogo e iniciar a renderização.
@@ -21,6 +36,9 @@ async function iniciarBusca() {
         dados = await resposta.json();
         console.log(`Catálogo carregado: ${dados.length} arquivos.`);
         
+        // 2. Chamar o contador após o carregamento inicial (exibe o total geral)
+        atualizarContador(dados.length, false);
+        
         // Renderiza todos os arquivos inicialmente
         renderizarArquivos(dados);
     } catch (error) {
@@ -29,6 +47,8 @@ async function iniciarBusca() {
             <p class="erro">Não foi possível carregar o catálogo de imagens.
             <br>Detalhes: ${error.message}</p>
         `;
+        // Atualiza para uma mensagem de erro no contador
+        totalRegistrosElement.textContent = "Total: Erro no carregamento";
     }
 }
 
@@ -55,8 +75,15 @@ function criarCardHTML(arquivo) {
 /**
  * Função para renderizar um array de arquivos na seção principal.
  * @param {Array<object>} listaDeArquivos - O array de arquivos PNG a ser exibido.
+ * @param {boolean} isFiltered - Indica se a renderização é resultado de um filtro.
  */
 function renderizarArquivos(listaDeArquivos) {
+    const termoBusca = inputBusca.value.toLowerCase().trim();
+    const isFiltered = termoBusca !== "";
+
+    // 3. Chamar o contador na renderização, usando o tamanho da lista atual
+    atualizarContador(listaDeArquivos.length, isFiltered);
+
     if (listaDeArquivos.length === 0) {
         sectionContainer.innerHTML = '<p class="mensagem-vazio">Nenhum arquivo PNG encontrado com o termo de busca.</p>';
         return;
