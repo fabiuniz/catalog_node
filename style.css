@@ -321,3 +321,60 @@ main {
         font-size: 0.7rem;
     }
 }
+/* Estilos para o Modal de Detalhes */
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed; /* Posição fixa: permanece no lugar */
+    z-index: 10; /* Fica por cima de outros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    overflow: auto; /* Permite rolagem se necessário */
+    background-color: rgb(0,0,0); /* Fallback para navegadores antigos */
+    background-color: rgba(0,0,0,0.8); /* Fundo preto semi-transparente */
+}
+
+/* Conteúdo/Caixa do Modal */
+.modal-conteudo {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% do topo e centralizado */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Pode ser ajustado */
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    text-align: center;
+}
+
+/* O botão de fechar */
+.fechar-modal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.fechar-modal:hover,
+.fechar-modal:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilo para a imagem dentro do modal */
+.modal-imagem-preview {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+}
+
+#modal-caminho a {
+    word-break: break-all;
+    font-size: 0.9em;
+    color: #007bff;
+}

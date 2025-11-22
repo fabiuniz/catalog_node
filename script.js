@@ -26,19 +26,15 @@ async function iniciarBusca() {
     try {
         // --- CHAVE: Buscar o novo arquivo JSON gerado pelo backend ---
         let resposta = await fetch("catalogo_png.json");
-        
         if (!resposta.ok) {
             // Se o arquivo não for encontrado, significa que o Node.js não o criou ou o caminho está errado.
             throw new Error(`Erro HTTP! Status: ${resposta.status}. Certifique-se de ter rodado o script Node.js.`);
         }
-        
         // Os dados agora são um array de objetos {nome: string, caminho: string}
         dados = await resposta.json();
         console.log(`Catálogo carregado: ${dados.length} arquivos.`);
-        
         // 2. Chamar o contador após o carregamento inicial (exibe o total geral)
         atualizarContador(dados.length, false);
-        
         // Renderiza todos os arquivos inicialmente
         renderizarArquivos(dados);
     } catch (error) {
@@ -63,7 +59,6 @@ function criarCardHTML(arquivo) {
     return `
         <article class="card arquivo-png-card">
             <img src="${arquivo.caminho}" alt="Pré-visualização do arquivo ${arquivo.nome}" class="card-imagem">
-            
             <div class="card-detalhes">
                 <h3>${arquivo.nome}</h3>
                 <span class="caminho-relativo">Caminho: ${arquivo.caminho}</span>
@@ -75,23 +70,29 @@ function criarCardHTML(arquivo) {
 /**
  * Função para renderizar um array de arquivos na seção principal.
  * @param {Array<object>} listaDeArquivos - O array de arquivos PNG a ser exibido.
- * @param {boolean} isFiltered - Indica se a renderização é resultado de um filtro.
  */
 function renderizarArquivos(listaDeArquivos) {
     const termoBusca = inputBusca.value.toLowerCase().trim();
     const isFiltered = termoBusca !== "";
-
     // 3. Chamar o contador na renderização, usando o tamanho da lista atual
     atualizarContador(listaDeArquivos.length, isFiltered);
-
     if (listaDeArquivos.length === 0) {
         sectionContainer.innerHTML = '<p class="mensagem-vazio">Nenhum arquivo PNG encontrado com o termo de busca.</p>';
         return;
-    }
-    
-    // Mapeia o array para strings HTML e junta-as.
-    const htmlCards = listaDeArquivos.map(criarCardHTML).join('');
-    sectionContainer.innerHTML = htmlCards;
+    }    
+    // Limpa o container antes de adicionar os novos cards
+    sectionContainer.innerHTML = ''; 
+    // Itera sobre a lista, cria o elemento e adiciona o listener de clique
+    listaDeArquivos.forEach(arquivo => {
+        // Cria o elemento Article DOM diretamente
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = criarCardHTML(arquivo).trim();
+        const cardElement = tempDiv.firstChild;
+        // Adiciona o evento de clique que abrirá o modal
+        adicionarListenerCard(cardElement, arquivo);        
+        // Adiciona o card criado ao container
+        sectionContainer.appendChild(cardElement);
+    });
 }
 
 /**
@@ -99,22 +100,68 @@ function renderizarArquivos(listaDeArquivos) {
  * O filtro é "responsivo", pois é acionado a cada digitação (input).
  */
 function filtrarArquivos() {
-    const termoBusca = inputBusca.value.toLowerCase().trim();
-    
+    const termoBusca = inputBusca.value.toLowerCase().trim();    
     if (termoBusca === "") {
         // Se a busca estiver vazia, renderiza todos os dados originais
         renderizarArquivos(dados);
         return;
     }
-
     const resultadosFiltrados = dados.filter(arquivo => {
         // Filtra pelo nome do arquivo (sem case sensitive)
         return arquivo.nome.toLowerCase().includes(termoBusca);
     });
-
     renderizarArquivos(resultadosFiltrados);
 }
 
+
+// Referências para os elementos do Modal
+const detalheModal = document.getElementById('detalhe-modal');
+const modalImagem = document.getElementById('modal-imagem');
+const modalTitulo = document.getElementById('modal-titulo');
+const modalCaminho = document.getElementById('modal-caminho');
+const modalInfoExtra = document.getElementById('modal-info-extra');
+
+
+/**
+ * Abre o modal e preenche com os detalhes do item clicado.
+ * @param {object} item - O objeto de dados do item (nome, caminho).
+ */
+function abrirModal(item) {
+    // 1. Preenche o conteúdo do modal
+    modalTitulo.textContent = item.nome;
+    modalCaminho.innerHTML = `**Caminho (URL):** <a href="${item.caminho}" target="_blank">${item.caminho}</a>`;
+    modalImagem.src = item.caminho;
+    modalImagem.alt = `Pré-visualização de ${item.nome}`;    
+    // Simula uma informação extra que poderia vir da API (opcional)
+    modalInfoExtra.textContent = "Clique fora ou no 'X' para fechar.";
+    // 2. Torna o modal visível
+    detalheModal.style.display = "block";    
+    // Adiciona o listener para fechar o modal ao clicar fora
+    window.onclick = function(event) {
+        if (event.target === detalheModal) {
+            fecharModal();
+        }
+    }
+}
+
+/**
+ * Fecha o modal.
+ */
+function fecharModal() {
+    detalheModal.style.display = "none";
+    window.onclick = null; // Remove o listener para evitar fechar a página inteira
+}
+
+/**
+ * Funções adicionais para manipular o clique no card.
+ * @param {HTMLElement} cardElement - O elemento <article> do card.
+ * @param {object} arquivo - O objeto de dados do arquivo ({nome, caminho}).
+ */
+function adicionarListenerCard(cardElement, arquivo) {
+    cardElement.addEventListener('click', () => {
+        abrirModal(arquivo);
+    });
+}
 
 // --- Inicialização e Listeners ---
 

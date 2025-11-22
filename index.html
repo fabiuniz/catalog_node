@@ -16,7 +16,19 @@
             <button id="botao-busca" onclick="iniciarBusca()">Buscar</button> 
         </div>
     </header>
-
+    <div id="detalhe-modal" class="modal">
+        <div class="modal-conteudo">
+            <span class="fechar-modal" onclick="fecharModal()">&times;</span>
+            <div id="modal-corpo">
+                <div id="modal-card-conteudo">
+                    <img id="modal-imagem" src="" alt="Imagem do Jogo" class="modal-imagem-preview">
+                    <h2 id="modal-titulo"></h2>
+                    <p id="modal-caminho"></p>
+                    <p id="modal-info-extra"></p>
+                </div>
+            </div>
+        </div>
+    </div>
     <main>
         <section id="catalogo-container"></section> 
     </main>
