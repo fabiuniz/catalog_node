@@ -58,7 +58,8 @@ async function iniciarBusca() {
  * @returns {string} O HTML do card.
  */
 function criarCardHTML(arquivo) {
-    // A ESTRUTURA DEVE REFLETIR O NOVO CSS DE CARTÃO
+    // A ESTRUTURA DEVE REFLETIR O NOVO CSS DE CARTÃO    
+    arquivo.caminho = arquivo.caminho || arquivo.urlCompleta;
     return `
         <article class="card arquivo-png-card">
             <img src="${arquivo.caminho}" alt="Pré-visualização do arquivo ${arquivo.nome}" class="card-imagem">
