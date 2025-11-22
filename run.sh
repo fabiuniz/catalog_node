@@ -1,21 +1,36 @@
 #!/bin/bash
-
+#dos2unix run.sh .env; . run.sh;
 # ==============================================================================
 # SCRIPT DE PREPARAÇÃO E EXECUÇÃO DO CATÁLOGO DE PNGs (Bash)
 # ==============================================================================
 
-# 1. Variáveis de Configuração
-GERADOR_NODE_SCRIPT="gerar_catalogo.js"
-PORTA_DO_SERVIDOR=8080
-NODE_VERSION="20"
+# 1. Carregar Variáveis de Configuração do .env
+# Exemplo do arquivo .env:
+# NODE_VERSION="20"
+# GERADOR_NODE_SCRIPT="gerar_catalogo.js"
+# PORTA_DO_SERVIDOR=8080
+# SHARE_PATH="//Pc-fbi/d/Data1TB/Emul/Nes/Roms"
+# MOUNT_POINT="/images_png"
+# LINK_NAME="images"
+# USERNAME="username"
+# DOMAIN="nomedasuarede"
+# PASSWORD="suasenhaderede"
+# ----------------------------------------------
+ENV_FILE="./.env"
 
-# --- Variáveis de Montagem ---
-SHARE_PATH="//Pc-fbi/d/Data1TB/Emul/Nes/Roms"
-MOUNT_POINT="/images_png"
-USERNAME="user"
-DOMAIN="suarede"
-PASSWORD="zxxx" # ATENÇÃO: Senha em arquivo é inseguro!
-LINK_NAME="images" # Corresponde ao 'PREFIXO_URL_PARA_O_FRONTEND' no Node.js
+if [ -f "$ENV_FILE" ]; then
+    echo "Carregando variáveis de $ENV_FILE..."
+    # 'source' ou '.' lê o arquivo e define as variáveis no shell atual
+    source "$ENV_FILE"
+    echo "✅ Variáveis carregadas."
+else
+    echo "❌ Arquivo $ENV_FILE não encontrado. Verifique se as variáveis foram definidas no script."
+    # Se o arquivo .env for crucial, você pode optar por sair aqui
+    # exit 1 
+fi
+
+# A partir daqui, as variáveis (GERADOR_NODE_SCRIPT, PORTA_DO_SERVIDOR, etc.)
+# carregadas do .env já estarão disponíveis para o restante do script.
 
 echo "--- Iniciando o Processo de Deploy e Execução ---"
 
@@ -23,7 +38,7 @@ echo "--- Iniciando o Processo de Deploy e Execução ---"
 SUDO_CMD=""
 # Se não for root (ID != 0), o 'sudo' é necessário para comandos como 'mount' e 'apt'.
 if [ "$(id -u)" != "0" ]; then 
-   SUDO_CMD="sudo"
+    SUDO_CMD="sudo"
 fi
 
 ## SEÇÃO 0: CORREÇÃO DE ERROS DE SISTEMA E INSTALAÇÃO DE UTILITÁRIOS
