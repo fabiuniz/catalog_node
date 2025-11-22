@@ -17,20 +17,22 @@
 # PASSWORD="suasenhaderede"
 # ----------------------------------------------
 ENV_FILE="./.env"
+SKIP_JSON_GENERATION=false # Inicializa como falso (comportamento padrão é gerar)
 
 if [ -f "$ENV_FILE" ]; then
     echo "Carregando variáveis de $ENV_FILE..."
-    # 'source' ou '.' lê o arquivo e define as variáveis no shell atual
     source "$ENV_FILE"
     echo "✅ Variáveis carregadas."
 else
-    echo "❌ Arquivo $ENV_FILE não encontrado. Verifique se as variáveis foram definidas no script."
-    # Se o arquivo .env for crucial, você pode optar por sair aqui
-    # exit 1 
+    echo "❌ Arquivo $ENV_FILE não encontrado..."
 fi
 
-# A partir daqui, as variáveis (GERADOR_NODE_SCRIPT, PORTA_DO_SERVIDOR, etc.)
-# carregadas do .env já estarão disponíveis para o restante do script.
+# 1. Processamento de Parâmetros de Linha de Comando
+# Verifica se o primeiro argumento é o flag para pular a geração
+if [ "$1" = "--skip-json" ] || [ "$1" = "--skip-generation" ]; then
+    SKIP_JSON_GENERATION=true
+    echo "⚠️ Parâmetro de condição detectado: Pularemos a Geração do Catálogo (Seção 2.2)."
+fi
 
 echo "--- Iniciando o Processo de Deploy e Execução ---"
 
@@ -155,17 +157,22 @@ echo "---"
 
 ### 2.2 Geração do Catálogo (Node.js)
 
-echo "## 2.2. Executando o script Node.js para gerar o catálogo (catalogo_png.json)..."
-node $GERADOR_NODE_SCRIPT
+if [ "$SKIP_JSON_GENERATION" = true ]; then
+    echo "## 2.2. Geração de Catálogo (Ignorada)"
+    echo "⚠️ Pulando a execução do script Node.js. O catálogo existente será usado."
+else
+    echo "## 2.2. Executando o script Node.js para gerar o catálogo (catalogo_png.json)..."
+    node $GERADOR_NODE_SCRIPT
 
-if [ $? -ne 0 ]; then
-    echo "❌ Erro ao gerar o catálogo de PNGs."
-    # Desmonta a pasta em caso de erro fatal
-    $SUDO_CMD umount -l "$MOUNT_POINT" 2>/dev/null 
-    exit 1
+    if [ $? -ne 0 ]; then
+        echo "❌ Erro ao gerar o catálogo de PNGs."
+        # Desmonta a pasta em caso de erro fatal
+        $SUDO_CMD umount -l "$MOUNT_POINT" 2>/dev/null 
+        exit 1
+    fi
+
+    echo "✅ Catálogo de PNGs gerado com sucesso."
 fi
-
-echo "✅ Catálogo de PNGs gerado com sucesso."
 echo "---"
 
 ## SEÇÃO 3: EXECUÇÃO DO SERVIDOR WEB E LIMPEZA
