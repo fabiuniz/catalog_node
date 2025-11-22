@@ -135,7 +135,17 @@ fi
 $SUDO_CMD umount -l "$MOUNT_POINT" 2>/dev/null
 
 # 3. Tenta montar a pasta de rede
-if $SUDO_CMD mount -t cifs "$SHARE_PATH" "$MOUNT_POINT" -o username="$USERNAME",domain="$DOMAIN",password="$PASSWORD",iocharset=utf8,users,file_mode=0777,dir_mode=0777,vers=3.0; then
+# Constrói a string de credenciais condicionalmente
+CREDENTIALS=""
+if [ -n "$USERNAME" ] && [ -n "$PASSWORD" ]; then
+    # Se houver usuário e senha, usa-os
+    CREDENTIALS="username=$USERNAME,domain=$DOMAIN,password=$PASSWORD,"
+else
+    # Caso contrário, tenta montar como convidado (guest)
+    CREDENTIALS="guest,"
+fi
+
+if $SUDO_CMD mount -t cifs "$SHARE_PATH" "$MOUNT_POINT" -o ${CREDENTIALS}iocharset=utf8,users,file_mode=0777,dir_mode=0777,vers=3.0; then
     echo "✅ Pasta de rede montada em $MOUNT_POINT."
 else
     echo "❌ Falha ao montar a pasta de rede. Verifique o caminho UNC e as credenciais."
