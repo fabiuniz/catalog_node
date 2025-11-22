@@ -100,19 +100,25 @@ function renderizarArquivos(listaDeArquivos) {
  * O filtro é "responsivo", pois é acionado a cada digitação (input).
  */
 function filtrarArquivos() {
-    const termoBusca = inputBusca.value.toLowerCase().trim();    
+    const termoBusca = inputBusca.value.toLowerCase().trim();
     if (termoBusca === "") {
-        // Se a busca estiver vazia, renderiza todos os dados originais
         renderizarArquivos(dados);
         return;
     }
     const resultadosFiltrados = dados.filter(arquivo => {
-        // Filtra pelo nome do arquivo (sem case sensitive)
-        return arquivo.nome.toLowerCase().includes(termoBusca);
+        // --- CHAVE: Busca dinâmica em todas as propriedades relevantes ---
+        // Itera sobre os valores de cada propriedade do objeto 'arquivo'
+        return Object.values(arquivo).some(valor => {
+            // Converte o valor para string e minúsculas para comparação (apenas se for não nulo)
+            if (valor !== null && valor !== undefined) {
+                const valorString = String(valor).toLowerCase();
+                return valorString.includes(termoBusca);
+            }
+            return false;
+        });
     });
     renderizarArquivos(resultadosFiltrados);
 }
-
 
 // Referências para os elementos do Modal
 const detalheModal = document.getElementById('detalhe-modal');
