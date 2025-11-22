@@ -7,36 +7,49 @@
 # 1. Variáveis de Configuração
 GERADOR_NODE_SCRIPT="gerar_catalogo.js"
 PORTA_DO_SERVIDOR=8080
-# Versão LTS atualizada do Node.js a ser instalada
 NODE_VERSION="20"
+
+# --- Variáveis de Montagem ---
+SHARE_PATH="//Pc-fbi/d/Data1TB/Emul/Nes/Roms"
+MOUNT_POINT="/images_png"
+USERNAME="user"
+DOMAIN="suarede"
+PASSWORD="zxxx" # ATENÇÃO: Senha em arquivo é inseguro!
+LINK_NAME="images" # Corresponde ao 'PREFIXO_URL_PARA_O_FRONTEND' no Node.js
 
 echo "--- Iniciando o Processo de Deploy e Execução ---"
 
-# Define se o comando 'sudo' é necessário (apenas se não for root)
+# Define se o comando 'sudo' é necessário. Corrigimos a sintaxe do 'id -u'.
 SUDO_CMD=""
-if [ "$(id -u)" != "0" ]; then
+# Se não for root (ID != 0), o 'sudo' é necessário para comandos como 'mount' e 'apt'.
+if [ "$(id -u)" != "0" ]; then 
    SUDO_CMD="sudo"
 fi
 
-## SEÇÃO 0: CORREÇÃO DE ERROS DE SISTEMA (APT)
+## SEÇÃO 0: CORREÇÃO DE ERROS DE SISTEMA E INSTALAÇÃO DE UTILITÁRIOS
 # ------------------------------------------------------------------------------
 
-echo "## 0. Verificando a integridade do APT..."
-HASHICORP_LIST="/etc/apt/sources.list.d/hashicorp.list"
+echo "## 0. Verificando e Instalando Utilidades Essenciais (apt)..."
 
-# Verifica se o arquivo problemático existe
+# Atualiza a lista de pacotes
+$SUDO_CMD apt-get update
+$SUDO_CMD apt install xsel
+
+# Instala cifs-utils (necessário para o mount -t cifs) e sudo (se não estiver instalado)
+$SUDO_CMD apt-get install -y cifs-utils curl sudo
+
+if [ $? -ne 0 ]; then
+    echo "❌ Falha ao instalar pacotes essenciais (cifs-utils, curl, sudo)."
+    exit 1
+fi
+echo "✅ Utilidades essenciais instaladas/verificadas."
+
+# Bloco para corrigir o Hashicorp (mantido do script original)
+HASHICORP_LIST="/etc/apt/sources.list.d/hashicorp.list"
 if [ -f "$HASHICORP_LIST" ]; then
-    echo "⚠️ Arquivo de configuração $HASHICORP_LIST encontrado e pode estar corrompido."
-    echo "Tentando renomear/remover para resolver o erro 'Malformed entry'..."
-    
-    # Usa rm para remover o arquivo, executado com as permissões corretas
-    if $SUDO_CMD rm "$HASHICORP_LIST"; then
-        echo "✅ Arquivo $HASHICORP_LIST removido com sucesso."
-    else
-        echo "❌ Falha ao tentar remover $HASHICORP_LIST. Verifique as permissões."
-    fi
-else
-    echo "✅ Arquivo de fontes do Hashicorp não encontrado ou corrigido."
+    echo "⚠️ Arquivo de configuração $HASHICORP_LIST encontrado. Removendo..."
+    $SUDO_CMD rm "$HASHICORP_LIST"
+    echo "✅ Arquivo $HASHICORP_LIST removido."
 fi
 
 echo "---"
@@ -44,56 +57,40 @@ echo "---"
 ## SEÇÃO 1: INSTALAÇÃO E VERIFICAÇÃO DE DEPENDÊNCIAS (NODE.JS)
 # ------------------------------------------------------------------------------
 
+# ... (Conteúdo original da Seção 1 para instalação do Node.js e NPM, que foi omitido aqui para concisão, mas deve ser mantido no seu arquivo) ...
+
 echo "## 1. Verificando e Instalando Node.js (v${NODE_VERSION})..."
 
-# Verifica se o Node.js está instalado.
+# Bloco de instalação do Node.js (mantido do script original)
 if ! command -v node &> /dev/null
 then
     echo "❌ Node.js não encontrado. Tentando instalar a versão ${NODE_VERSION}..."
-    
-    # --------------------------------------------------------------------------
-    # ESTRATÉGIA DE INSTALAÇÃO DO NODE.JS (Via Gerenciador de Pacotes)
-    # --------------------------------------------------------------------------
-    
-    # 1. Tenta usar 'apt' (Debian/Ubuntu)
     if command -v apt-get &> /dev/null; then
         echo "Usando APT para instalar o Node.js."
-        
-        $SUDO_CMD apt-get update
-        $SUDO_CMD apt-get install -y curl
-        
-        echo "Adicionando repositório do NodeSource..."
         curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION}.x | $SUDO_CMD bash -
-        
         $SUDO_CMD apt-get install -y nodejs
-        
-    # 2. Tenta usar 'yum' ou 'dnf' (RHEL/CentOS/Fedora)
     elif command -v yum &> /dev/null || command -v dnf &> /dev/null; then
         echo "Usando YUM/DNF para instalar o Node.js."
         PKG_MANAGER=$(command -v dnf || echo "yum")
         $SUDO_CMD $PKG_MANAGER install -y "nodejs"
-
     else
         echo "❌ Não foi possível encontrar um gerenciador de pacotes para instalar o Node.js."
         exit 1
     fi
     
-    # Reverifica após a tentativa de instalação
     if ! command -v node &> /dev/null; then
         echo "❌ Node.js não foi instalado com sucesso. Saindo."
         exit 1
     fi
-    
     echo "✅ Node.js v$(node -v) instalado/verificado."
 fi
 
-# Inicializa o projeto (se package.json não existir)
+# Inicializa o projeto e instala 'serve'
 if [ ! -f "package.json" ]; then
     echo "Criando package.json..."
     npm init -y > /dev/null 2>&1
 fi
 
-# Instala o servidor estático 'serve' localmente.
 echo "Instalando a dependência 'serve' para servir a aplicação..."
 npm install serve --save-dev
 
@@ -105,33 +102,72 @@ fi
 echo "✅ Dependências instaladas/verificadas."
 echo "---"
 
-## SEÇÃO 2: PREPARAÇÃO DOS DADOS (GERAÇÃO DO CATÁLOGO)
+
+## SEÇÃO 2: MONTAGEM DA REDE E GERAÇÃO DO CATÁLOGO
 # ------------------------------------------------------------------------------
 
-echo "## 2. Executando o script Node.js para gerar o catálogo (catalogo_png.json)..."
-source ~/.bashrc 2>/dev/null || source ~/.zshrc 2>/dev/null
+### 2.1 Montagem da Pasta de Rede (CIFS)
+
+echo "## 2.1. Montando a pasta de rede CIFS..."
+
+# 1. Cria o ponto de montagem se não existir
+if [ ! -d "$MOUNT_POINT" ]; then
+    echo "Criando ponto de montagem $MOUNT_POINT..."
+    $SUDO_CMD mkdir -p "$MOUNT_POINT"
+fi
+
+# 2. Desmonta se já estiver montado para evitar erros
+$SUDO_CMD umount -l "$MOUNT_POINT" 2>/dev/null
+
+# 3. Tenta montar a pasta de rede
+if $SUDO_CMD mount -t cifs "$SHARE_PATH" "$MOUNT_POINT" -o username="$USERNAME",domain="$DOMAIN",password="$PASSWORD",iocharset=utf8,users,file_mode=0777,dir_mode=0777,vers=3.0; then
+    echo "✅ Pasta de rede montada em $MOUNT_POINT."
+else
+    echo "❌ Falha ao montar a pasta de rede. Verifique o caminho UNC e as credenciais."
+    exit 1
+fi
+echo "---"
+
+### 2.2 Geração do Catálogo (Node.js)
+
+echo "## 2.2. Executando o script Node.js para gerar o catálogo (catalogo_png.json)..."
 node $GERADOR_NODE_SCRIPT
 
 if [ $? -ne 0 ]; then
-    echo "❌ Erro ao gerar o catálogo de PNGs. Verifique o arquivo $GERADOR_NODE_SCRIPT e os caminhos."
-    exit 1
-fi
-
-if [ ! -f "catalogo_png.json" ]; then
-    echo "⚠️ O arquivo catalogo_png.json não foi encontrado após a execução."
+    echo "❌ Erro ao gerar o catálogo de PNGs."
+    # Desmonta a pasta em caso de erro fatal
+    $SUDO_CMD umount -l "$MOUNT_POINT" 2>/dev/null 
     exit 1
 fi
 
 echo "✅ Catálogo de PNGs gerado com sucesso."
 echo "---"
 
-## SEÇÃO 3: EXECUÇÃO DO SERVIDOR WEB
+## SEÇÃO 3: EXECUÇÃO DO SERVIDOR WEB E LIMPEZA
 # ------------------------------------------------------------------------------
 
 echo "## 3. Subindo o Servidor Web Estático..."
+
+### 3.1 Criação do Link Simbólico (Mapeamento Web)
+echo "Criando link simbólico ($LINK_NAME) para o ponto de montagem ($MOUNT_POINT)..."
+$SUDO_CMD rm -f "$LINK_NAME" # Remove link/pasta antiga
+$SUDO_CMD ln -s "$MOUNT_POINT" "$LINK_NAME" # Cria o link: images -> /images_png
+
+### 3.2 Execução do Servidor
 echo "Serviço iniciado em: http://localhost:$PORTA_DO_SERVIDOR"
 echo "Pressione CTRL+C para parar o servidor."
 
 npx serve . --listen $PORTA_DO_SERVIDOR
 
 echo "Servidor Parado."
+
+# --- Limpeza Final ---
+echo "Desmontando a pasta de rede..."
+$SUDO_CMD umount -l "$MOUNT_POINT" 2>/dev/null
+if [ $? -eq 0 ]; then
+    echo "✅ Pasta de rede desmontada com sucesso."
+else
+    echo "⚠️ Não foi possível desmontar a pasta $MOUNT_POINT. (Pode estar desmontada ou em uso)."
+fi
+
+exit 0

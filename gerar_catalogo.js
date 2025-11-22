@@ -3,28 +3,17 @@
 const fs = require('fs');
 const path = require('path');
 
-// --- Configurações CRÍTICAS (Ajuste Aqui) ---
-// 1. O CAMINHO DA REDE que o Node.js irá varrer.
-// O usuário que roda o script DEVE ter permissão de leitura.
-// Exemplo (Windows UNC): '\\\\SEU_SERVIDOR\\SUA_PASTA_COMPARTILHADA\\imagens_png';
-const PASTA_DE_REDE_A_VARRER = '\\\\Pc-fbi\\d\\Data1TB\\Emul\\Nes\\Roms\\downloaded_images';
-
-// 2. O PREFIXO URL que o navegador usará para acessar a imagem.
-// Se seu servidor serve a pasta de imagens em http://localhost:8080/assets/imgs, use 'assets/imgs'.
-const PREFIXO_URL_PARA_O_FRONTEND = 'images/'; 
-// ---------------------------------------------
-
+// --- Configurações CRÍTICAS ---
+const PASTA_DE_REDE_A_VARRER = '/images_png';
+const PREFIXO_URL_PARA_O_FRONTEND = 'images/';
 const ARQUIVO_DE_SAIDA = 'catalogo_png.json';
 
 /**
  * Função recursiva para varrer uma pasta em busca de arquivos PNG.
- * @param {string} dir O diretório a ser varrido.
- * @param {string} relativeDir O caminho relativo (usado para montar o URL).
  */
-function varrerDiretorio(dir, relativeDir = '') {
+function varrerDiretorio(dir, relativeDir = '', contadorRef) {
     let catalogo = [];
     
-    // Testa se o diretório existe e é acessível
     if (!fs.existsSync(dir)) {
         throw new Error(`O caminho de rede não existe ou está inacessível: ${dir}`);
     }
@@ -37,15 +26,17 @@ function varrerDiretorio(dir, relativeDir = '') {
         const stats = fs.statSync(itemPath);
 
         if (stats.isDirectory()) {
-            // Se for um diretório, varre recursivamente
-            catalogo = catalogo.concat(varrerDiretorio(itemPath, relativeItemPath));
+            catalogo = catalogo.concat(varrerDiretorio(itemPath, relativeItemPath, contadorRef));
         } else if (stats.isFile() && item.toLowerCase().endsWith('.png')) {
-            // Se for um arquivo .png, monta o URL para o frontend
             const urlPath = path.join(PREFIXO_URL_PARA_O_FRONTEND, relativeItemPath).replace(/\\/g, '/');
+            
+            contadorRef.current++; 
+            
             catalogo.push({
+                id: contadorRef.current,
                 nome: item,
-                caminho: urlPath, // O navegador usará este URL
-                caminho_rede: itemPath // Para referência
+                caminho: urlPath,
+                caminho_rede: itemPath
             });
         }
     }
@@ -54,7 +45,9 @@ function varrerDiretorio(dir, relativeDir = '') {
 
 // --- Execução Principal ---
 try {
-    const catalogoFinal = varrerDiretorio(PASTA_DE_REDE_A_VARRER);
+    const contadorGlobal = { current: 0 }; 
+
+    const catalogoFinal = varrerDiretorio(PASTA_DE_REDE_A_VARRER, '', contadorGlobal);
 
     const jsonOutput = JSON.stringify(catalogoFinal, null, 4);
     fs.writeFileSync(ARQUIVO_DE_SAIDA, jsonOutput);

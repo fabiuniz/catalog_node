@@ -4,23 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="favicon.ico">
     <title>Catálogo de Imagens PNG</title>
-    </head>
+</head>
 <body>
     <header>
         <h1>Catálogo de Imagens PNG</h1>
+        <p id="total-registros">Total: Carregando...</p> 
         <div>
-            <input type="text" placeholder="Buscar por nome do arquivo (.png)">
+            <input type="text" id="input-busca" placeholder="Buscar por nome do arquivo (.png)"> 
             <button id="botao-busca" onclick="iniciarBusca()">Buscar</button> 
         </div>
     </header>
 
     <main>
-        <section></section>
+        <section id="catalogo-container"></section> 
     </main>
 
-    <footer>
     <footer class="footer">
         <ul class="footer-links">
             <li>
