@@ -1,0 +1,362 @@
+[
+{
+    "nome": "The Legend of Zelda: The Wind Waker",
+    "avaliacao": 4.5,
+    "ano": 2002,
+    "genero": "Ação-aventura, RPG",
+    "plataformas": "Nintendo GameCube, Wii U (HD)",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/36.png",
+    "resumo": "Aventura clássica de Link no Grande Mar para salvar sua irmã e enfrentar Ganondorf, com um estilo visual cel-shading único.",
+    "descricao": "The Wind Waker é um título aclamado na série Zelda, notável por seu visual em cel-shading e sua jogabilidade focada na exploração marítima. Link deve viajar por várias ilhas, superando masmorras e quebra-cabeças, enquanto descobre os segredos do Grande Mar e a lenda de Hyrule submersa. O jogo é elogiado por seu charme, música e as interações envolventes dos personagens."
+  },
+  {
+    "nome": "The Legend of Zelda: Breath of the Wild",
+    "avaliacao": 5.0,
+    "ano": 2017,
+    "genero": "Ação-aventura, Mundo Aberto",
+    "plataformas": "Nintendo Switch, Wii U",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/35.png",
+    "resumo": "Uma aventura de mundo aberto massiva onde Link desperta de um sono de 100 anos para derrotar Calamity Ganon e salvar o reino de Hyrule.",
+    "descricao": "Breath of the Wild redefiniu o gênero de mundo aberto com sua ênfase na liberdade do jogador, física e mecânicas de sobrevivência. Jogue como Link, explorando um vasto e detalhado Hyrule, onde cada montanha pode ser escalada e cada segredo pode ser descoberto. O jogo oferece centenas de Santuários para resolver, chefes desafiadores e uma história emocionante que o jogador pode desvendar em seu próprio ritmo."
+  },
+  {
+    "nome": "Mass Effect Trilogy",
+    "avaliacao": 4.8,
+    "ano": 2012,
+    "genero": "Role-playing (RPG), Shooter",
+    "plataformas": "XBox, Playstation, PC",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/1.png",
+    "resumo": "Uma épica saga de ficção científica onde suas escolhas moldam o destino da galáxia. Ameaças antigas despertam e só o Comandante Shepard pode detê-las.",
+    "descricao": "Mass Effect Trilogy reúne a aclamada trilogia original de jogos de RPG e tiro, incluindo todo o conteúdo single-player da série. Embarque na jornada do Comandante Shepard, um soldado de elite que lidera uma equipe para impedir a aniquilação da galáxia por uma raça alienígena ancestral conhecida como Reapers. Suas decisões ao longo dos três jogos impactam a narrativa, os personagens e o desfecho final, criando uma experiência profundamente imersiva e pessoal. Prepare-se para combates intensos, dilemas morais complexos e um universo rico em lore e personagens inesquecíveis."
+  },
+  {
+    "nome": "Red Dead Redemption 2",
+    "avaliacao": 4.7,
+    "ano": 2018,
+    "genero": "Role-playing (RPG), Adventure",
+    "plataformas": "XBox, Playstation, PC",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/2.png",
+    "resumo": "Vagueie pelo Velho Oeste como Arthur Morgan, um fora da lei em busca de redenção em um mundo brutalmente belo.",
+    "descricao": "Red Dead Redemption 2 é um épico de mundo aberto ambientado no implacável coração da América em 1899. Jogue como Arthur Morgan, um membro da gangue de Van der Linde, enquanto eles tentam sobreviver em um mundo que está se modernizando. O jogo oferece uma narrativa profunda e emocional, com personagens complexos e um vasto mapa detalhado que reage às suas ações. De tiroteios a passeios a cavalo, caça, pesca e interações com uma gama diversificada de NPCs, RDR2 é uma simulação imersiva da vida de um fora da lei no fim do Velho Oeste."
+  },
+  {
+    "nome": "The Witcher 3: Wild Hunt",
+    "avaliacao": 4.7,
+    "ano": 2014,
+    "genero": "Role-playing (RPG), Adventure",
+    "plataformas": "XBox, Playstation, PC",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/3.png",
+    "resumo": "Cace monstros em um vasto mundo aberto como Geralt de Rívia, um bruxo em busca de sua filha adotiva e do poder do Continente.",
+    "descricao": "The Witcher 3: Wild Hunt é um RPG de mundo aberto massivo que coloca você no papel de Geralt de Rívia, um caçador de monstros profissional em um Continente dilacerado pela guerra. Sua missão é encontrar Ciri, uma criança da profecia com poderes extraordinários. O jogo é conhecido por sua história rica e ramificada, missões secundárias significativas que afetam o mundo e um sistema de combate fluido que combina espadas, magia e alquimia. Explore cidades vibrantes, pântanos misteriosos e montanhas imponentes, enquanto faz escolhas difíceis que moldarão o destino de muitos."
+  },
+  {
+    "nome": "Sekiro: Shadows Die Twice",
+    "avaliacao": 3.8,
+    "ano": 2019,
+    "genero": "Role-playing (RPG), Adventure",
+    "plataformas": "XBox, Playstation, PC",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/4.png",
+    "resumo": "Mergulhe no Japão Sengoku como o \"Lobo de um Braço Só\", um shinobi em busca de vingança e honra.",
+    "descricao": "Sekiro: Shadows Die Twice é um intenso jogo de ação-aventura ambientado no período Sengoku do Japão. Você controla um shinobi desfigurado conhecido como \"Lobo\", que deve resgatar seu jovem mestre. O combate é focado na precisão, parries e postura, com um sistema de ressurreição único que permite continuar a luta. Explore castelos deslumbrantes, templos ocultos e paisagens de tirar o fôlego, enquanto enfrenta inimigos formidáveis e chefes épicos em uma jornada desafiadora que testará suas habilidades e determinação."
+  },
+  {
+    "nome": "Ghost of Tsushima",
+    "avaliacao": 4.6,
+    "ano": 2012,
+    "genero": "Role-playing (RPG), Adventure",
+    "plataformas": "XBox, Playstation, PC",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/5.png",
+    "resumo": "Lute pela liberdade em Tsushima como Jin Sakai, um samurai que deve abandonar suas tradições para salvar seu povo.",
+    "descricao": "Ghost of Tsushima é um jogo de ação-aventura de mundo aberto ambientado no Japão feudal durante a primeira invasão mongol na ilha de Tsushima. Jogue como Jin Sakai, um samurai que deve dominar o caminho do Fantasma para proteger seu povo a qualquer custo. O jogo oferece um combate visceral com espadas, elementos de furtividade, e uma profunda customização de equipamentos. Explore paisagens deslumbrantes, desde florestas de bambu até templos antigos, e experimente uma história emocionante de sacrifício e honra em meio à guerra."
+  },
+  {
+    "nome": "Super Mario World",
+    "avaliacao": 4.7,
+    "ano": 1990,
+    "genero": "Platform",
+    "plataformas": "Super Ness, PC",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/6.png",
+    "resumo": "Acompanhe Mario e Luigi em uma aventura clássica no mundo dos dinossauros para resgatar a Princesa Peach.",
+    "descricao": "Super Mario World é um aclamado jogo de plataforma do Super Nintendo, onde Mario e Luigi exploram o Dinosaur Land para resgatar a Princesa Peach das garras de Bowser. O jogo introduziu o icônico dinossauro Yoshi e uma variedade de novos power-ups. Com seu design de níveis brilhante, segredos escondidos e jogabilidade atemporal, Super Mario World é considerado um dos maiores jogos de plataforma de todos os tempos, oferecendo horas de diversão e desafios para jogadores de todas as idades."
+  },
+  {
+    "nome": "Hollow Knight",
+    "avaliacao": 4.6,
+    "ano": 2017,
+    "genero": "Platform",
+    "plataformas": "XBox, Playstation, PC",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/7.png",
+    "resumo": "Explore Hallownest, um reino em ruínas cheio de insetos e mistérios, em um Metroidvania desafiador e atmosférico.",
+    "descricao": "Hollow Knight é um aclamado jogo de plataforma e aventura Metroidvania ambientado no desolado reino de Hallownest. Você joga como o Cavaleiro, um guerreiro silencioso que deve desvendar os segredos de uma praga misteriosa enquanto enfrenta chefes temíveis e explora vastos e interconectados cenários. Com sua arte desenhada à mão, trilha sonora assombrosa e combate preciso, Hollow Knight oferece uma experiência desafiadora e profundamente gratificante para os fãs do gênero."
+  },
+  {
+    "nome": "Ori and the Blind Forest",
+    "avaliacao": 4.0,
+    "ano": 2015,
+    "genero": "Platform",
+    "plataformas": "XBox, Playstation, PC",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/8.png",
+    "resumo": "Uma bela e emocionante jornada de plataforma e aventura para salvar a floresta de Nibel da escuridão.",
+    "descricao": "Ori and the Blind Forest é um jogo de plataforma e aventura visualmente deslumbrante que segue a história de Ori, um espírito guardião, em sua busca para restaurar a floresta de Nibel. Com sua arte estilo aquarela, trilha sonora orquestral e jogabilidade fluida, o jogo combina plataformas precisas com combates desafiadores e elementos de Metroidvania. É uma experiência emocional e cativante, onde cada salto e habilidade contam para desvendar os mistérios da floresta e purificar a escuridão."
+  },
+  {
+    "nome": "Cuphead",
+    "avaliacao": 4.6,
+    "ano": 2017,
+    "genero": "Platform",
+    "plataformas": "XBox, Playstation, PC",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/9.png",
+    "resumo": "Um jogo de ação e tiro run-and-gun com gráficos inspirados em desenhos animados dos anos 1930 e batalhas de chefes desafiadoras.",
+    "descricao": "Cuphead é um jogo de plataforma e ação run-and-gun conhecido por seu estilo de arte único, inspirado em desenhos animados dos anos 1930, e sua dificuldade notória. Jogue como Cuphead (ou Mugman no modo cooperativo) enquanto eles tentam pagar sua dívida ao Diabo. O jogo é focado principalmente em intensas batalhas contra chefes, cada uma com múltiplos estágios e padrões desafiadores. Prepare-se para testar seus reflexos e paciência em um mundo vibrante e sonoramente rico, repleto de jazz e animações feitas à mão."
+  },
+  {
+    "nome": "Sonic CD",
+    "avaliacao": 4.0,
+    "ano": 1993,
+    "genero": "Platform",
+    "plataformas": "Sega CD, PC",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/10.png",
+    "resumo": "Corra através do tempo para salvar o futuro e deter o Dr. Robotnik em uma aventura clássica do ouriço azul.",
+    "descricao": "Sonic CD é um jogo de plataforma icônico que levou Sonic the Hedgehog a uma nova dimensão com sua capacidade de viajar no tempo. Lance-se em níveis futuristas e passados para alterar o presente, impedindo os planos do Dr. Robotnik de dominar o Little Planet. O jogo é notável por suas fases vibrantes, o design de nível não linear e a introdução de Amy Rose e Metal Sonic. Com sua trilha sonora memorável e jogabilidade rápida, Sonic CD oferece uma experiência única que se destaca na história do Sonic."
+  },
+  {
+    "nome": "Comanche 4",
+    "avaliacao": 3.0,
+    "ano": 2001,
+    "genero": "Simulador",
+    "plataformas": "PC",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/11.png",
+    "resumo": "Um simulador de helicóptero de combate realista.",
+    "descricao": "Comanche 4 é um jogo de simulação de helicóptero que coloca o jogador no controle de um helicóptero de ataque Comanche RAH-66, participando de missões de combate em vários cenários."
+  },
+  {
+    "nome": "Days Gone",
+    "avaliacao": 5.0,
+    "ano": 2019,
+    "genero": "Ação-aventura",
+    "plataformas": "PS4, PC",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/12.png",
+    "resumo": "Sobreviva em um mundo pós-apocalíptico infestado por Freakers.",
+    "descricao": "Days Gone é um jogo de ação-aventura e sobrevivência ambientado em um mundo aberto pós-apocalíptico, onde o jogador assume o papel de Deacon St. John, um motociclista e ex-membro de uma gangue, lutando para sobreviver contra hordas de criaturas hostis."
+  },
+  {
+    "nome": "DiRT",
+    "avaliacao": 2.0,
+    "ano": 2007,
+    "genero": "Corrida",
+    "plataformas": "PC, Xbox 360, PS3",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/13.png",
+    "resumo": "Um jogo de corrida off-road com gráficos impressionantes.",
+    "descricao": "DiRT é um jogo de corrida off-road que oferece uma experiência emocionante com diversos veículos e pistas, incluindo rali, rallycross e eventos de buggy."
+  },
+  {
+    "nome": "Evolution GT",
+    "avaliacao": 2.0,
+    "ano": 2006,
+    "genero": "Corrida",
+    "plataformas": "PC, PS2",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/14.png",
+    "resumo": "Um jogo de corrida focado na evolução do piloto e seus carros.",
+    "descricao": "Evolution GT é um jogo de corrida que combina simulação e elementos de RPG, onde o jogador desenvolve suas habilidades e customiza seus carros para se tornar o melhor piloto."
+  },
+  {
+    "nome": "FlatOut Ultimate Carnage",
+    "avaliacao": 3.0,
+    "ano": 2007,
+    "genero": "Corrida",
+    "plataformas": "PC, Xbox 360",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/15.png",
+    "resumo": "Corrida arcade com destruição intensa e bonecos de crash-test voadores.",
+    "descricao": "FlatOut Ultimate Carnage é a versão definitiva de FlatOut 2, trazendo corridas de demolição com física de danos aprimorada e modos de jogo caóticos."
+  },
+  {
+    "nome": "Flatout Utimate",
+    "avaliacao": 4.0,
+    "ano": 2007,
+    "genero": "Corrida",
+    "plataformas": "PC, Xbox 360",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/16.png",
+    "resumo": "Corrida de demolição com muita ação e destruição.",
+    "descricao": "Flatout Ultimate (provavelmente FlatOut Ultimate Carnage) oferece corridas intensas com foco na destruição de veículos e ambientes interativos."
+  },
+  {
+    "nome": "FlatOut",
+    "avaliacao": 4.0,
+    "ano": 2004,
+    "genero": "Corrida",
+    "plataformas": "PC, PS2, Xbox",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/17.png",
+    "resumo": "O jogo original de corrida e demolição com física realista.",
+    "descricao": "FlatOut é um jogo de corrida que se destaca pela sua física de destruição detalhada, onde o objetivo é não apenas vencer, mas também causar o máximo de estrago."
+  },
+  {
+    "nome": "Forza Horizon 5",
+    "avaliacao": 5.0,
+    "ano": 2021,
+    "genero": "Corrida",
+    "plataformas": "Xbox Series X/S, Xbox One, PC",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/18.png",
+    "resumo": "Aventura de corrida em mundo aberto no México vibrante.",
+    "descricao": "Forza Horizon 5 leva os jogadores a um mundo aberto deslumbrante ambientado no México, com centenas de carros, eventos e paisagens para explorar."
+  },
+  {
+    "nome": "God of War",
+    "avaliacao": 4.0,
+    "ano": 2018,
+    "genero": "Ação-aventura",
+    "plataformas": "PS4, PC",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/19.png",
+    "resumo": "Kratos e Atreus em uma jornada épica pela mitologia nórdica.",
+    "descricao": "God of War reinventa a série com uma nova perspectiva e foco na relação entre Kratos e seu filho Atreus, enquanto eles enfrentam deuses e monstros da mitologia nórdica."
+  },
+  {
+    "nome": "Grand Prix 4",
+    "avaliacao": 2.0,
+    "ano": 2002,
+    "genero": "Corrida",
+    "plataformas": "PC",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/20.png",
+    "resumo": "Simulador de Fórmula 1 altamente aclamado.",
+    "descricao": "Grand Prix 4 é um dos simuladores de Fórmula 1 mais realistas e detalhados já feitos, oferecendo uma experiência autêntica das corridas da F1."
+  },
+  {
+    "nome": "GTA5",
+    "avaliacao": 3.0,
+    "ano": 2013,
+    "genero": "Ação-aventura",
+    "plataformas": "PC, PS3, PS4, Xbox 360, Xbox One, PS5, Xbox Series X/S",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/21.png",
+    "resumo": "Três criminosos em um mundo aberto gigante de Los Santos.",
+    "descricao": "Grand Theft Auto V é um jogo de ação-aventura em mundo aberto onde os jogadores controlam três protagonistas interligados em uma história complexa de crime em Los Santos e Blaine County."
+  },
+  {
+    "nome": "Horizon Zero Dawn Complete Edition",
+    "avaliacao": 5.0,
+    "ano": 2017,
+    "genero": "RPG de Ação",
+    "plataformas": "PS4, PC",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/22.png",
+    "resumo": "Aloy em um mundo pós-apocalíptico dominado por máquinas.",
+    "descricao": "Horizon Zero Dawn Complete Edition inclui o jogo base e a expansão Frozen Wilds, onde a caçadora Aloy explora um mundo exuberante e misterioso habitado por máquinas robóticas."
+  },
+  {
+    "nome": "Matrix",
+    "avaliacao": 3.0,
+    "ano": 1999,
+    "genero": "Filme/Ação-aventura",
+    "plataformas": "PC, PS2, Xbox (como The Matrix: Path of Neo)",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/23.png",
+    "resumo": "Inspirado no universo de ficção científica de Matrix.",
+    "descricao": "Embora \"Matrix\" seja primariamente um filme, jogos como \"Enter the Matrix\" e \"The Matrix: Path of Neo\" exploram o universo cinematográfico, com combate baseado nas habilidades de Neo."
+  },
+  {
+    "nome": "Need For Speed Carbon",
+    "avaliacao": 3.0,
+    "ano": 2006,
+    "genero": "Corrida",
+    "plataformas": "PC, PS2, Xbox 360, PS3, Wii",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/24.png",
+    "resumo": "Domine as ruas e territórios em corridas de canyon.",
+    "descricao": "Need For Speed Carbon foca em corridas de rua ilegais e domínio de territórios, introduzindo corridas de canyon onde os jogadores precisam superar rivais em descidas perigosas."
+  },
+  {
+    "nome": "Need For Speed Hot Pursuit 2",
+    "avaliacao": 3.0,
+    "ano": 2002,
+    "genero": "Corrida",
+    "plataformas": "PC, PS2, Xbox, GameCube",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/25.png",
+    "resumo": "Corridas de alta velocidade e perseguições policiais emocionantes.",
+    "descricao": "Need For Speed Hot Pursuit 2 traz de volta as perseguições policiais clássicas e corridas exóticas em cenários diversos, com um forte foco em velocidade e fugas."
+  },
+  {
+    "nome": "Need For Speed Most Wanted",
+    "avaliacao": 4.0,
+    "ano": 2005,
+    "genero": "Corrida",
+    "plataformas": "PC, PS2, Xbox, Xbox 360, GameCube",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/26.png",
+    "resumo": "Fuja da polícia e suba na Blacklist para se tornar o mais procurado.",
+    "descricao": "Need For Speed Most Wanted combina corridas de rua em mundo aberto com perseguições policiais intensas, onde o objetivo é subir na Blacklist e se tornar o piloto mais notório."
+  },
+  {
+    "nome": "Need for Speed Undercover",
+    "avaliacao": 4.0,
+    "ano": 2008,
+    "genero": "Corrida",
+    "plataformas": "PC, PS2, PS3, Xbox 360, Wii",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/27.png",
+    "resumo": "Pilote infiltrado para derrubar uma sindicato do crime internacional.",
+    "descricao": "Need for Speed Undercover coloca o jogador como um agente secreto infiltrado em uma organização criminosa, participando de corridas de rua para desvendar uma conspiração."
+  },
+  {
+    "nome": "Need For Speed Underground 2",
+    "avaliacao": 3.0,
+    "ano": 2004,
+    "genero": "Corrida",
+    "plataformas": "PC, PS2, Xbox, GameCube",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/28.png",
+    "resumo": "Personalização profunda e exploração em mundo aberto.",
+    "descricao": "Need For Speed Underground 2 expande o conceito do seu antecessor com um mundo aberto para explorar, permitindo customização extensa de carros e diversos modos de corrida."
+  },
+  {
+    "nome": "Need For Speed Underground",
+    "avaliacao": 3.0,
+    "ano": 2003,
+    "genero": "Corrida",
+    "plataformas": "PC, PS2, Xbox, GameCube",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/29.png",
+    "resumo": "O renascimento das corridas de rua e tunagem de carros.",
+    "descricao": "Need For Speed Underground revolucionou a série com um foco em corridas de rua noturnas, personalização detalhada de carros e uma trilha sonora marcante."
+  },
+  {
+    "nome": "Resident Evil Village",
+    "avaliacao": 4.0,
+    "ano": 2021,
+    "genero": "Survival Horror",
+    "plataformas": "PC, PS4, PS5, Xbox One, Xbox Series X/S",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/30.png",
+    "resumo": "Ethan Winters enfrenta horrores em uma vila sombria e misteriosa.",
+    "descricao": "Resident Evil Village continua a história de Ethan Winters, que busca sua filha sequestrada em uma vila remota e aterrorizante, enfrentando criaturas góticas e monstros em primeira pessoa."
+  },
+  {
+    "nome": "Senhor dos Aneis",
+    "avaliacao": 3.0,
+    "ano": 2002,
+    "genero": "RPG/Ação-aventura",
+    "plataformas": "PC, PS2, Xbox, GameCube (jogos variados)",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/31.png",
+    "resumo": "Baseado na épica saga de fantasia de J.R.R. Tolkien.",
+    "descricao": "Diversos jogos foram lançados baseados em \"O Senhor dos Anéis\", abrangendo gêneros de RPG de ação, estratégia e aventura, permitindo aos jogadores vivenciar a Terra Média."
+  },
+  {
+    "nome": "The Last of Us - Part I",
+    "avaliacao": 5.0,
+    "ano": 2013,
+    "genero": "Ação-aventura",
+    "plataformas": "PS3, PS4, PS5, PC",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/32.png",
+    "resumo": "Joel e Ellie em uma jornada brutal por um EUA pós-apocalíptico.",
+    "descricao": "The Last of Us - Part I é uma recriação do aclamado jogo original, que segue Joel e Ellie em sua emocionante e perigosa jornada através de um mundo infestado por infectados e sobreviventes hostis."
+  },
+  {
+    "nome": "The Matrix - Path of Neo",
+    "avaliacao": 2.0,
+    "ano": 2005,
+    "genero": "Ação-aventura",
+    "plataformas": "PC, PS2, Xbox",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/33.png",
+    "resumo": "Reviva os momentos icônicos da trilogia Matrix como Neo.",
+    "descricao": "The Matrix - Path of Neo permite aos jogadores controlar Neo e reviver os eventos mais importantes dos três filmes da trilogia Matrix, com combate aprimorado e habilidades de Neo."
+  },
+  {
+    "nome": "Príncipe da Pérsia",
+    "avaliacao": 0.0,
+    "ano": 1989,
+    "genero": "Plataforma",
+    "plataformas": "PC, Amiga, NES, SNES, Master System, Mega Drive, Mobile",
+    "urlCompleta": "https://raw.githubusercontent.com/fabiuniz/gmcatalog-rest/main/images/34.png",
+    "resumo": "Um clássico jogo de plataforma que combina quebra-cabeças e combate.",
+    "descricao": "Príncipe da Pérsia é um marco nos jogos de plataforma, conhecido por suas animações realistas, design de níveis desafiador e uma mistura única de exploração, quebra-cabeças e combate com espadas. O jogador deve correr contra o tempo para resgatar a princesa do malvado Vizir Jaffar."
+  }
+]
