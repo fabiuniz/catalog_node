@@ -1,5 +1,6 @@
 #!/bin/bash
-#dos2unix run.sh .env; . run.sh;
+#dos2unix run.sh .env; . run.sh --skip-json --skip-generation;
+#dos2unix .env gemini_riched.js; source .env; node gemini_riched.js;
 # ==============================================================================
 # SCRIPT DE PREPARAÇÃO E EXECUÇÃO DO CATÁLOGO DE PNGs (Bash)
 # ==============================================================================
@@ -29,7 +30,7 @@ fi
 
 # 1. Processamento de Parâmetros de Linha de Comando
 # Verifica se o primeiro argumento é o flag para pular a geração
-if [ "$1" = "--skip-json" ] || [ "$1" = "--skip-generation" ]; then
+if [ "$1" = "--skip-json" ] ; then
     SKIP_JSON_GENERATION=true
     echo "⚠️ Parâmetro de condição detectado: Pularemos a Geração do Catálogo (Seção 2.2)."
 fi
@@ -110,6 +111,7 @@ fi
 
 echo "Instalando a dependência 'serve' para servir a aplicação..."
 npm install serve --save-dev
+npm install dotenv
 
 if [ $? -ne 0 ]; then
     echo "❌ Falha na instalação das dependências do npm."
@@ -162,6 +164,7 @@ if [ "$SKIP_JSON_GENERATION" = true ]; then
     echo "⚠️ Pulando a execução do script Node.js. O catálogo existente será usado."
 else
     echo "## 2.2. Executando o script Node.js para gerar o catálogo (catalogo_png.json)..."
+    # 1. Executa o script de geração inicial
     node $GERADOR_NODE_SCRIPT
 
     if [ $? -ne 0 ]; then
@@ -172,6 +175,18 @@ else
     fi
 
     echo "✅ Catálogo de PNGs gerado com sucesso."
+    
+    # 2. Executa o script de enriquecimento/aumento de dados (gemini_riched.js)
+    echo "Executando o script de enriquecimento de dados (gemini_riched.js)..."
+    node gemini_riched.js 
+    
+    if [ $? -ne 0 ]; then
+        echo "❌ Erro ao rodar o script gemini_riched.js."
+        # Desmonta a pasta em caso de erro fatal
+        $SUDO_CMD umount -l "$MOUNT_POINT" 2>/dev/null 
+        exit 1
+    fi
+    echo "✅ Enriquecimento de dados concluído."
 fi
 echo "---"
 
