@@ -22,7 +22,7 @@ const responseSchema = {
             "ano"  :{ "type": "STRING", "description": "2000, 2002, ..." },
             "genero" :{ "type": "STRING", "description": "Luta, ação, ..." },
             "plataformas": { "type": "STRING", "description": "Arcade, PC, ..." },
-            "urlCompleta": { "type": "STRING", "description": "URL oficial do encarte." },
+            "urlCompleta": { "type": "STRING", "description": "description": "URL de uma imagem pública e de alta qualidade (em .png ou .jpg) da capa ou do logo oficial do game. VOCÊ DEVE PESQUISAR E FORNECER UM LINK REAL DE IMAGEM DA WEB, NÃO UM PLACEHOLDER em urlCompleta." },
             "tags": {
                 "type": "ARRAY",
                 "description": "Array de 3 a 5 strings que categorizam o game (ex: 'PC', 'Console', 'Stream', 'linguagem de programação').",
@@ -47,10 +47,10 @@ async function generateNewKnowledge(existingKnowledge) {
     // Lista de nomes existentes para não repetição (para incluir no prompt)
     const existingNames = existingKnowledge.map(item => item.nome).join(', ');
 
-    const systemPrompt = `Você é um especialista em games e plataformas de games. Sua tarefa é criar ${TOTAL_ITEMS} novas entradas sobre diferentes tecnologias (linguagens, frameworks, ferramentas, bancos de dados, metodologias, etc.) com a mesma estrutura JSON. Garanta que cada entrada seja única e relevante. O foco é em termos atuais e amplamente usados plataforma de games.`;
+    const systemPrompt = `Você é um especialista em games e plataformas de games. Sua tarefa é criar ${TOTAL_ITEMS} novas entradas sobre diferentes games (emuladores, arcade, console etc.) com a mesma estrutura JSON. Garanta que cada entrada seja única e relevante. O foco é em termos atuais e amplamente usados plataforma de games e some na lista atual. Entrengue juntos com as entradas do json base.`;
     
     // NOVO userQuery: Focado em 25 itens e evitando nomes existentes
-    const userQuery = `Gere uma lista de ${TOTAL_ITEMS} novos games. Siga estritamente a estrutura JSON e o requisito de ser um ARRAY com EXATAMENTE ${TOTAL_ITEMS} objetos. Não inclua as 5 tecnologias iniciais (Atari, ...) e NÃO use NENHUM dos seguintes nomes: ${existingNames}.`;
+    const userQuery = `Gere uma lista de ${TOTAL_ITEMS} novos games. Siga estritamente a estrutura JSON e o requisito de ser um ARRAY com EXATAMENTE ${TOTAL_ITEMS} objetos. Não inclua os consoles iniciais (Atari, ...) e NÃO use NENHUM dos seguintes nomes: ${existingNames}. Use imagens na internet para os games populados. Se o link da imagem estiver quebrado tente outro até completar!`;
 
     const payload = {
         contents: [{ parts: [{ text: userQuery }] }],

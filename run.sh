@@ -30,7 +30,7 @@ fi
 
 # 1. Processamento de Parâmetros de Linha de Comando
 # Verifica se o primeiro argumento é o flag para pular a geração
-if [ "$1" = "--skip-json" ] ; then
+if [ "$1" = "--skip-generation" ] || [ "$2" = "--skip-generation" ] ; then
     SKIP_JSON_GENERATION=true
     echo "⚠️ Parâmetro de condição detectado: Pularemos a Geração do Catálogo (Seção 2.2)."
 fi
@@ -165,7 +165,10 @@ if [ "$SKIP_JSON_GENERATION" = true ]; then
 else
     echo "## 2.2. Executando o script Node.js para gerar o catálogo (catalogo_png.json)..."
     # 1. Executa o script de geração inicial
-    node $GERADOR_NODE_SCRIPT
+
+    if [ "$1" != "--skip-json" ] ; then
+        node $GERADOR_NODE_SCRIPT
+    fi
 
     if [ $? -ne 0 ]; then
         echo "❌ Erro ao gerar o catálogo de PNGs."
